@@ -39,36 +39,35 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchRecipes = async (query) => {
     query = query.trim();
     if (!query) return;
-
+  
     recipesGrid.innerHTML = "";
-    toggleElement(loadingElement, true);
-    toggleElement(errorElement, false);
-    toggleElement(noResultsElement, false);
-
+  
+    loadingElement.style.display = "block";
+    errorElement.style.display = "none";
+    noResultsElement.style.display = "none";
+  
     try {
       const response = await fetch(
-        `https://www.themealdb.com/api/json/v1/1/search.php?s=${encodeURIComponent(
-          query
-        )}`
+        `https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`
       );
       if (!response.ok) throw new Error("Failed to fetch recipes");
-
+  
       const data = await response.json();
-
+  
       if (data.meals) {
         recipesGrid.innerHTML = data.meals.map(createRecipeCard).join("");
       } else {
-        toggleElement(noResultsElement, true);
+        noResultsElement.style.display = "block";
       }
     } catch (err) {
+      errorElement.style.display = "block"; 
       showError("Failed to fetch recipes. Please try again.");
       console.error(err);
     } finally {
-      toggleElement(loadingElement, false);
+      loadingElement.style.display = "none"; 
     }
   };
-
-  searchForm.addEventListener("submit", (e) => {
+    searchForm.addEventListener("submit", (e) => {
     e.preventDefault();
     searchRecipes(searchInput.value);
   });
