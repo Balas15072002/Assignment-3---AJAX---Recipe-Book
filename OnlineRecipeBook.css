@@ -1,5 +1,5 @@
 :root {
-  --primary-color: #f97316;
+  --primary-color: #100c0a;
   --background: #fff7ed;
   --text-primary: #1f2937;
   --card-background: #ffffff;
@@ -67,7 +67,7 @@ body {
 }
 
 .search-container button:hover {
-  background: #ea580c;
+  background: #1a191bdb;
 }
 .section {
   margin-top: 10%;
@@ -136,5 +136,5 @@ body {
 }
 
 .view-recipe:hover {
-  background-color: #ea580c;
+  background-color: #1a191bdb;
 }
